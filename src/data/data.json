@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "appName": "FinSight Dashboard",
+    "defaultCurrency": "USD",
+    "timezone": "UTC",
+    "generatedAt": "2026-04-03T00:00:00.000Z"
+  },
+  "roles": {
+    "availableRoles": ["viewer", "admin"],
+    "defaultRole": "viewer"
+  },
+  "uiDefaults": {
+    "defaultSort": {
+      "field": "date",
+      "direction": "desc"
+    },
+    "defaultFilters": {
+      "type": "all",
+      "categories": []
+    },
+    "searchQuery": ""
+  },
+  "categories": [
+    { "id": "salary", "label": "Salary", "type": "income", "color": "#0ea5e9" },
+    { "id": "freelance", "label": "Freelance", "type": "income", "color": "#22c55e" },
+    { "id": "food", "label": "Food", "type": "expense", "color": "#f97316" },
+    { "id": "transport", "label": "Transport", "type": "expense", "color": "#a855f7" },
+    { "id": "housing", "label": "Housing", "type": "expense", "color": "#ef4444" },
+    { "id": "utilities", "label": "Utilities", "type": "expense", "color": "#eab308" },
+    { "id": "health", "label": "Health", "type": "expense", "color": "#14b8a6" }
+  ],
+  "transactions": [
+    {
+      "id": "tx-001",
+      "date": "2026-01-05",
+      "amount": 4200,
+      "currency": "USD",
+      "categoryId": "salary",
+      "type": "income",
+      "note": "Monthly salary",
+      "merchant": "Acme Corp",
+      "tags": ["primary"],
+      "createdAt": "2026-01-05T08:30:00.000Z",
+      "updatedAt": "2026-01-05T08:30:00.000Z"
+    },
+    {
+      "id": "tx-002",
+      "date": "2026-01-07",
+      "amount": 1200,
+      "currency": "USD",
+      "categoryId": "housing",
+      "type": "expense",
+      "note": "Rent",
+      "merchant": "City Homes",
+      "tags": ["fixed"],
+      "createdAt": "2026-01-07T10:00:00.000Z",
+      "updatedAt": "2026-01-07T10:00:00.000Z"
+    },
+    {
+      "id": "tx-003",
+      "date": "2026-01-12",
+      "amount": 96,
+      "currency": "USD",
+      "categoryId": "food",
+      "type": "expense",
+      "note": "Groceries",
+      "merchant": "FreshMart",
+      "tags": ["weekly"],
+      "createdAt": "2026-01-12T14:40:00.000Z",
+      "updatedAt": "2026-01-12T14:40:00.000Z"
+    },
+    {
+      "id": "tx-004",
+      "date": "2026-02-03",
+      "amount": 4250,
+      "currency": "USD",
+      "categoryId": "salary",
+      "type": "income",
+      "note": "Monthly salary",
+      "merchant": "Acme Corp",
+      "tags": ["primary"],
+      "createdAt": "2026-02-03T08:35:00.000Z",
+      "updatedAt": "2026-02-03T08:35:00.000Z"
+    },
+    {
+      "id": "tx-005",
+      "date": "2026-02-06",
+      "amount": 1180,
+      "currency": "USD",
+      "categoryId": "housing",
+      "type": "expense",
+      "note": "Rent",
+      "merchant": "City Homes",
+      "tags": ["fixed"],
+      "createdAt": "2026-02-06T10:00:00.000Z",
+      "updatedAt": "2026-02-06T10:00:00.000Z"
+    },
+    {
+      "id": "tx-006",
+      "date": "2026-02-10",
+      "amount": 340,
+      "currency": "USD",
+      "categoryId": "utilities",
+      "type": "expense",
+      "note": "Internet and power",
+      "merchant": "Metro Utility",
+      "tags": ["monthly"],
+      "createdAt": "2026-02-10T11:25:00.000Z",
+      "updatedAt": "2026-02-10T11:25:00.000Z"
+    },
+    {
+      "id": "tx-007",
+      "date": "2026-02-18",
+      "amount": 680,
+      "currency": "USD",
+      "categoryId": "freelance",
+      "type": "income",
+      "note": "Side project",
+      "merchant": "Nimbus Labs",
+      "tags": ["secondary"],
+      "createdAt": "2026-02-18T17:10:00.000Z",
+      "updatedAt": "2026-02-18T17:10:00.000Z"
+    },
+    {
+      "id": "tx-008",
+      "date": "2026-03-02",
+      "amount": 4300,
+      "currency": "USD",
+      "categoryId": "salary",
+      "type": "income",
+      "note": "Monthly salary",
+      "merchant": "Acme Corp",
+      "tags": ["primary"],
+      "createdAt": "2026-03-02T08:22:00.000Z",
+      "updatedAt": "2026-03-02T08:22:00.000Z"
+    },
+    {
+      "id": "tx-009",
+      "date": "2026-03-06",
+      "amount": 1190,
+      "currency": "USD",
+      "categoryId": "housing",
+      "type": "expense",
+      "note": "Rent",
+      "merchant": "City Homes",
+      "tags": ["fixed"],
+      "createdAt": "2026-03-06T09:10:00.000Z",
+      "updatedAt": "2026-03-06T09:10:00.000Z"
+    },
+    {
+      "id": "tx-010",
+      "date": "2026-03-09",
+      "amount": 132,
+      "currency": "USD",
+      "categoryId": "transport",
+      "type": "expense",
+      "note": "Fuel and toll",
+      "merchant": "QuickFuel",
+      "tags": ["mobility"],
+      "createdAt": "2026-03-09T12:20:00.000Z",
+      "updatedAt": "2026-03-09T12:20:00.000Z"
+    },
+    {
+      "id": "tx-011",
+      "date": "2026-03-15",
+      "amount": 84,
+      "currency": "USD",
+      "categoryId": "health",
+      "type": "expense",
+      "note": "Pharmacy",
+      "merchant": "MediHub",
+      "tags": ["care"],
+      "createdAt": "2026-03-15T18:15:00.000Z",
+      "updatedAt": "2026-03-15T18:15:00.000Z"
+    },
+    {
+      "id": "tx-012",
+      "date": "2026-03-23",
+      "amount": 260,
+      "currency": "USD",
+      "categoryId": "food",
+      "type": "expense",
+      "note": "Dining out",
+      "merchant": "Urban Table",
+      "tags": ["lifestyle"],
+      "createdAt": "2026-03-23T20:00:00.000Z",
+      "updatedAt": "2026-03-23T20:00:00.000Z"
+    }
+  ],
+  "insightsConfig": {
+    "compareWindowMonths": 1,
+    "topCategoriesLimit": 5,
+    "largeExpenseThreshold": 500
+  }
+}
