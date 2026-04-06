@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useAppSelector } from '@/store/hooks';
 import {
   LayoutDashboard,
   ArrowLeftRight,
