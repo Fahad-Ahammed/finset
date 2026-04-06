@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
   LayoutDashboard,
   ArrowLeftRight,
@@ -16,9 +17,11 @@ import {
   Sun,
   Moon,
 } from 'lucide-react';
+import { selectRole, selectUI } from '@/store/selectors';
+import { setRole } from '@/store/slices/roleSlice';
 
 const navItems = [
-  { label: 'Dashboard', icon: LayoutDashboard, href: '/home' },
+  { label: 'Dashboard', icon: LayoutDashboard, href: '/' },
   { label: 'Transactions', icon: ArrowLeftRight, href: '/transactions' },
   { label: 'Wallet', icon: Wallet, href: '/wallet' },
   { label: 'Goals', icon: Target, href: '/goals' },
@@ -33,6 +36,8 @@ const bottomItems = [
 ];
 
 export default function Sidebar() {
+  const dispatch = useAppDispatch();
+  const role = useAppSelector(selectRole);
   const [collapsed, setCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState('Dashboard');
   const [darkMode, setDarkMode] = useState(false);
@@ -91,7 +96,7 @@ export default function Sidebar() {
                 <Link
                   href={item.href}
                   onClick={() => setActiveItem(item.label)}
-                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm   font-medium transition-colors ${
+                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
                     isActive
                       ? 'bg-[#7B61FF] text-white'
                       : 'text-black hover:bg-[#7B61FF] hover:text-white'
@@ -115,7 +120,7 @@ export default function Sidebar() {
             <li key={item.label}>
               <Link
                 href={item.href}
-                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-black transition-colors  hover:bg-[#7B61FF] hover:text-white ${
+                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-black transition-colors hover:bg-[#7B61FF] hover:text-white ${
                   collapsed ? 'justify-center px-0' : ''
                 }`}
                 title={collapsed ? item.label : undefined}
@@ -154,6 +159,30 @@ export default function Sidebar() {
             aria-label="Dark mode"
           >
             <Moon size={16} />
+          </button>
+        </div>
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-1 text-sm">
+          <button
+            type="button"
+            onClick={() => dispatch(setRole('viewer'))}
+            className={`rounded-lg px-4 py-2 font-medium transition ${
+              role === 'viewer'
+                ? 'bg-slate-900 text-white'
+                : 'text-slate-600 hover:bg-slate-200'
+            }`}
+          >
+            Viewer
+          </button>
+          <button
+            type="button"
+            onClick={() => dispatch(setRole('admin'))}
+            className={`rounded-lg px-4 py-2 font-medium transition ${
+              role === 'admin'
+                ? 'bg-slate-900 text-white'
+                : 'text-slate-600 hover:bg-slate-200'
+            }`}
+          >
+            Admin
           </button>
         </div>
       </div>
