@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import roleReducer from '@/store/slices/roleSlice';
 import transactionsReducer from '@/store/slices/transactionsSlice';
 import uiReducer from '@/store/slices/uiSlice';
+import insightsReducer from '@/store/slices/insightsSlice';
 
 export const makeStore = () =>
   configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () =>
       transactions: transactionsReducer,
       ui: uiReducer,
       role: roleReducer,
+      insights: insightsReducer,
     },
   });
 

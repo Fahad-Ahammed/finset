@@ -187,9 +187,40 @@
       "updatedAt": "2026-03-23T20:00:00.000Z"
     }
   ],
-  "insightsConfig": {
-    "compareWindowMonths": 1,
-    "topCategoriesLimit": 5,
-    "largeExpenseThreshold": 500
-  }
+  "insights": {
+  "summary": "Automated Suggestions", 
+  "lastUpdated": "2h ago",
+  "items": [
+    {
+      "id": "ins-001",
+      "type": "warning",
+      "title": "Expenses rose 10% vs last month",
+      "description": "Most growth came from Transport and Food. Consider reviewing recurring subscriptions for potential savings.",
+      "trend": "up",
+      "actionable": true
+    },
+    {
+      "id": "ins-002",
+      "type": "info",
+      "title": "High single-day spending on 2026-03-06",
+      "description": "A $1,190 payment to 'City Homes' increased monthly expenses. You may want to move this to a fixed budget.",
+      "date": "2026-03-06",
+      "actionable": false
+    },
+    {
+      "id": "ins-003",
+      "type": "success",
+      "title": "Opportunity to increase emergency fund",
+      "description": "With current cash flow ($2,634 surplus), shifting $300/month could reach your target in 4 months.",
+      "actionable": true
+    },
+     {
+      "id": "ins-004",
+      "type": "success",
+      "title": "Opportunity to increase emergency fund",
+      "description": "With current cash flow ($2,634 surplus), shifting $300/month could reach your target in 4 months.",
+      "actionable": true
+    }
+  ]
+}
 }

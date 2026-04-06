@@ -7,6 +7,7 @@ export const selectTransactions = (state: RootState) => state.transactions.items
 export const selectCategories = (state: RootState) => state.transactions.categories;
 export const selectCurrency = (state: RootState) => state.transactions.currency;
 export const selectUI = (state: RootState) => state.ui;
+export const selectInsightsData = (state: RootState) => state.insights;
 
 export const selectCategoryById = createSelector([selectCategories], (categories) => {
   return categories.reduce<Record<string, Category>>((map, category) => {
