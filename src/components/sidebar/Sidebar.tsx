@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store/hooks';
 import {
   LayoutDashboard,
   ArrowLeftRight,
@@ -17,8 +17,6 @@ import {
   Sun,
   Moon,
 } from 'lucide-react';
-import { selectRole, selectUI } from '@/store/selectors';
-import { setRole } from '@/store/slices/roleSlice';
 
 const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, href: '/' },
@@ -36,8 +34,6 @@ const bottomItems = [
 ];
 
 export default function Sidebar() {
-  const dispatch = useAppDispatch();
-  const role = useAppSelector(selectRole);
   const [collapsed, setCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState('Dashboard');
   const [darkMode, setDarkMode] = useState(false);
@@ -131,60 +127,6 @@ export default function Sidebar() {
             </li>
           ))}
         </ul>
-
-        {/* Dark mode toggle */}
-        <div
-          className={`mt-6 flex items-center rounded-full bg-[#2D2D3D] p-1 ${
-            collapsed ? 'mx-auto w-10 flex-col gap-1' : 'w-fit gap-0'
-          }`}
-        >
-          <button
-            onClick={() => setDarkMode(false)}
-            className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-              !darkMode
-                ? 'bg-[#7B61FF] text-white'
-                : 'text-[#A2A2B5] hover:text-white'
-            }`}
-            aria-label="Light mode"
-          >
-            <Sun size={16} />
-          </button>
-          <button
-            onClick={() => setDarkMode(true)}
-            className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-              darkMode
-                ? 'bg-[#7B61FF] text-white'
-                : 'text-[#A2A2B5] hover:text-white'
-            }`}
-            aria-label="Dark mode"
-          >
-            <Moon size={16} />
-          </button>
-        </div>
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-1 text-sm">
-          <button
-            type="button"
-            onClick={() => dispatch(setRole('viewer'))}
-            className={`rounded-lg px-4 py-2 font-medium transition ${
-              role === 'viewer'
-                ? 'bg-slate-900 text-white'
-                : 'text-slate-600 hover:bg-slate-200'
-            }`}
-          >
-            Viewer
-          </button>
-          <button
-            type="button"
-            onClick={() => dispatch(setRole('admin'))}
-            className={`rounded-lg px-4 py-2 font-medium transition ${
-              role === 'admin'
-                ? 'bg-slate-900 text-white'
-                : 'text-slate-600 hover:bg-slate-200'
-            }`}
-          >
-            Admin
-          </button>
-        </div>
       </div>
     </aside>
   );
