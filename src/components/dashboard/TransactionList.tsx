@@ -19,6 +19,7 @@ import {
 import { addTransaction, updateTransaction } from '@/store/slices/transactionsSlice';
 import { Search, Plus, Pencil, RotateCcw, X, ChevronDown } from 'lucide-react';
 import type { SortDirection, SortField, Transaction, TransactionType } from '@/types/finance';
+import Link from 'next/link';
 
 const formatCurrency = (value: number, currency: string) => {
   return new Intl.NumberFormat('en-US', {
@@ -55,7 +56,12 @@ const emptyForm: FormModel = {
   merchant: '',
 };
 
-function TransactionList() {
+interface TransactionListProps {
+  limit?: number;
+}
+
+function TransactionList({ limit }: TransactionListProps) {
+  const compact = typeof limit === 'number';
   const dispatch = useAppDispatch();
 
   const role = useAppSelector(selectRole);
@@ -63,6 +69,7 @@ function TransactionList() {
   const categories = useAppSelector(selectCategories);
   const categoryById = useAppSelector(selectCategoryById);
   const transactions = useAppSelector(selectSortedTransactions);
+  const displayedTransactions = compact ? transactions.slice(0, limit) : transactions;
 
   const [formOpen, setFormOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -142,13 +149,23 @@ function TransactionList() {
   ];
 
   return (
-    <div className="flex-1 bg-white">
-      <div className="px-8 pb-8">
+    <div className={compact ? 'min-w-0' : 'flex-1 bg-white'}>
+      <div className={compact ? '' : 'px-8 pb-8'}>
         <section className="rounded-2xl border border-[#E5E5EF] bg-white p-6">
           {/* Header row */}
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <h2 className="text-lg font-semibold text-[#1C1C28]">Transactions</h2>
+            <h2 className="text-lg font-semibold text-[#1C1C28]">
+              {compact ? 'Recent Transactions' : 'Transactions'}
+            </h2>
 
+            {compact ? (
+              <Link
+                href="/transactions"
+                className="text-sm font-semibold text-[#7B61FF] transition-colors hover:text-[#6B4FE0]"
+              >
+                See all
+              </Link>
+            ) : (
             <div className="flex flex-wrap items-center gap-2.5">
               {/* Search */}
               <div className="relative">
@@ -236,10 +253,11 @@ function TransactionList() {
                 </button>
               )}
             </div>
+            )}
           </div>
 
           {/* Table or empty state */}
-          {transactions.length === 0 ? (
+          {displayedTransactions.length === 0 ? (
             <div className="mt-6 flex flex-col items-center rounded-2xl border border-dashed border-[#E5E5EF] bg-[#FAFAFE] py-16">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F4F2FF] text-[#7B61FF]">
                 <Search size={20} />
@@ -258,11 +276,11 @@ function TransactionList() {
                     <th className="px-3 py-3 text-[11px] font-semibold uppercase tracking-wider text-[#A2A2B5]">Merchant</th>
                     <th className="px-3 py-3 text-[11px] font-semibold uppercase tracking-wider text-[#A2A2B5]">Amount</th>
                     <th className="px-3 py-3 text-[11px] font-semibold uppercase tracking-wider text-[#A2A2B5]">Note</th>
-                    {role === 'admin' && <th className="px-3 py-3 text-[11px] font-semibold uppercase tracking-wider text-[#A2A2B5]" />}
+                    {!compact && role === 'admin' && <th className="px-3 py-3 text-[11px] font-semibold uppercase tracking-wider text-[#A2A2B5]" />}
                   </tr>
                 </thead>
                 <tbody>
-                  {transactions.map((tx) => {
+                  {displayedTransactions.map((tx) => {
                     const cat = categoryById[tx.categoryId];
                     return (
                       <tr key={tx.id} className="border-b border-[#F0EDFF]/60 transition-colors hover:bg-[#FAFAFE]">
@@ -296,7 +314,7 @@ function TransactionList() {
                           </span>
                         </td>
                         <td className="max-w-50 truncate px-3 py-3.5 text-xs text-[#A2A2B5]">{tx.note || <span className="text-[#E5E5EF]">&mdash;</span>}</td>
-                        {role === 'admin' && (
+                        {!compact && role === 'admin' && (
                           <td className="px-3 py-3.5">
                             <button
                               type="button"
@@ -319,7 +337,7 @@ function TransactionList() {
       </div>
 
       {/* Modal */}
-      {formOpen && role === 'admin' && (
+      {!compact && formOpen && role === 'admin' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1C1C28]/40 p-4 backdrop-blur-sm">
           <form
             onSubmit={onSubmit}
