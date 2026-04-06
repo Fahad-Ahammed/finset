@@ -9,12 +9,12 @@ import {
   Target,
   PieChart,
   BarChart3,
-  Settings,
   HelpCircle,
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Phone,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 const navItems = [
@@ -24,7 +24,7 @@ const navItems = [
   { label: 'Goals', icon: Target, href: '/goals' },
   { label: 'Budget', icon: PieChart, href: '/budget' },
   { label: 'Analytics', icon: BarChart3, href: '/analytics' },
-  { label: 'Settings', icon: Settings, href: '/settings' },
+  { label: 'Settings', icon: Sun, href: '/settings' },
 ];
 
 const bottomItems = [
@@ -142,7 +142,7 @@ export default function Sidebar() {
             }`}
             aria-label="Light mode"
           >
-            <Settings size={16} />
+            <Sun size={16} />
           </button>
           <button
             onClick={() => setDarkMode(true)}
@@ -153,7 +153,7 @@ export default function Sidebar() {
             }`}
             aria-label="Dark mode"
           >
-            <Phone size={16} />
+            <Moon size={16} />
           </button>
         </div>
       </div>
