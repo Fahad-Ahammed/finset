@@ -93,6 +93,43 @@ export const selectSummary = createSelector([selectFilteredTransactions], (trans
     income,
     expenses,
     balance: income - expenses,
+    savings: income - expenses,
+  };
+});
+
+/**
+ * Computes month-over-month trend % for income, expense, balance, and savings.
+ * Compares the two most recent months that contain transactions.
+ */
+export const selectCardTrends = createSelector([selectTransactions], (transactions) => {
+  const buckets: Record<string, { income: number; expense: number }> = {};
+
+  for (const tx of transactions) {
+    const key = monthKey(tx.date);
+    if (!buckets[key]) buckets[key] = { income: 0, expense: 0 };
+    if (tx.type === 'income') buckets[key].income += tx.amount;
+    else buckets[key].expense += tx.amount;
+  }
+
+  const months = Object.keys(buckets).sort();
+  if (months.length < 2) {
+    return { income: 0, expense: 0, balance: 0, savings: 0 };
+  }
+
+  const curr = buckets[months[months.length - 1]];
+  const prev = buckets[months[months.length - 2]];
+
+  const pct = (current: number, previous: number) =>
+    previous === 0 ? 0 : ((current - previous) / previous) * 100;
+
+  const currBalance = curr.income - curr.expense;
+  const prevBalance = prev.income - prev.expense;
+
+  return {
+    income: pct(curr.income, prev.income),
+    expense: pct(curr.expense, prev.expense),
+    balance: pct(currBalance, prevBalance),
+    savings: pct(currBalance, prevBalance),
   };
 });
 
