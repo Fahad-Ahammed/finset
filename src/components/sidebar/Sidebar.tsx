@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   ArrowLeftRight,
@@ -54,8 +55,8 @@ const LogoIcon = () => (
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
-  const [activeItem, setActiveItem] = useState('Dashboard');
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click
@@ -87,7 +88,7 @@ export default function Sidebar() {
       {/* ── Mobile / Tablet top bar (below 2xl: 1440px) ── */}
       <div
         ref={menuRef}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-[#F6F4FF] px-4 py-3 shadow-sm xl:hidden"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-[#F6F4FF] px-4 py-3 shadow-sm lg:hidden"
       >
         {/* Logo */}
         <div className="flex items-center gap-3">
@@ -114,15 +115,12 @@ export default function Sidebar() {
           <nav className="absolute top-full left-0 right-0 max-h-[calc(100vh-64px)] overflow-y-auto border-t border-[#E0D9FF] bg-[#F6F4FF] px-4 py-3 shadow-lg">
             <ul className="space-y-1" role="list">
               {navItems.map((item) => {
-                const isActive = activeItem === item.label;
+                const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
                 return (
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      onClick={() => {
-                        setActiveItem(item.label);
-                        setMobileOpen(false);
-                      }}
+                      onClick={() => setMobileOpen(false)}
                       className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
                         isActive
                           ? 'bg-[#7B61FF] text-white'
@@ -160,7 +158,7 @@ export default function Sidebar() {
 
       {/* ── Desktop sidebar (2xl / 1440px+) ── */}
       <aside
-        className={`relative hidden min-h-screen flex-col bg-[#F6F4FF] text-white transition-all duration-300 xl:flex ${
+        className={`relative hidden min-h-screen flex-col bg-[#F6F4FF] text-white transition-all duration-300 lg:flex ${
           collapsed ? 'w-20' : 'w-62.5'
         }`}
         role="navigation"
@@ -191,12 +189,11 @@ export default function Sidebar() {
         <nav className="flex-1 px-3">
           <ul className="space-y-1" role="list">
             {navItems.map((item) => {
-              const isActive = activeItem === item.label;
+              const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
               return (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    onClick={() => setActiveItem(item.label)}
                     className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
                       isActive
                         ? 'bg-[#7B61FF] text-white'
