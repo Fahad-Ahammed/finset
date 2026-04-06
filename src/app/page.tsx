@@ -1,20 +1,16 @@
-import Sidebar from "@/components/sidebar/Sidebar";
 import Header from "@/components/header/Header";
 import FinanceCardsGrid from "@/components/dashboard/FinanceCardsGrid";
 import MoneyFlowChart from "@/components/dashboard/MoneyFlowChart";
 import BudgetDonutChart from "@/components/dashboard/BudgetDonutChart";
-import StoreProvider from "@/store/providers";
 
 export default function HomePage() {
   return (
-    <StoreProvider>
       <div className="flex min-h-screen">
-        <Sidebar />
         <div className="flex flex-1 flex-col bg-white">
           <Header />
           <main className="flex-1 px-8 pb-8">
             <FinanceCardsGrid />
-
+            
             {/* Charts row — Money flow (wider) + Budget (narrower) */}
             <div className="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-[1fr_340px]">
               <MoneyFlowChart />
@@ -28,8 +24,6 @@ export default function HomePage() {
             </div>
           </main>
         </div>
-        
       </div>
-    </StoreProvider>
   );
 }

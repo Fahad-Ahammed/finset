@@ -1,6 +1,9 @@
+
 import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
 import '@/styles/globals.css';
+import StoreProvider from "@/store/providers";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -20,7 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex h-full min-h-screen">
+        <StoreProvider>
+          <Sidebar />
+          <main className="flex-1 overflow-auto">{children}</main>
+        </StoreProvider>
+      </body>
     </html>
   );
 }
