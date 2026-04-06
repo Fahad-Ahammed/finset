@@ -103,7 +103,6 @@ function RoundedBar(props: Record<string, unknown>) {
 export default function MoneyFlowChart() {
   const transactions = useAppSelector(selectTransactions);
   const data = buildChartData(transactions);
-  const [accountFilter] = useState("All accounts");
   const [timeFilter] = useState("This year");
 
   return (
@@ -126,13 +125,6 @@ export default function MoneyFlowChart() {
           </div>
 
           {/* Filters */}
-          <button
-            type="button"
-            className="flex items-center gap-1.5 rounded-lg border border-[#E5E5EF] px-3 py-1.5 text-xs font-medium text-[#1C1C28] transition-colors hover:bg-[#F4F2FF]"
-          >
-            {accountFilter}
-            <ChevronDown size={14} className="text-[#A2A2B5]" />
-          </button>
           <button
             type="button"
             className="flex items-center gap-1.5 rounded-lg border border-[#E5E5EF] px-3 py-1.5 text-xs font-medium text-[#1C1C28] transition-colors hover:bg-[#F4F2FF]"
