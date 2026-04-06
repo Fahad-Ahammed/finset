@@ -4,6 +4,7 @@ import { Outfit } from 'next/font/google';
 import '@/styles/globals.css';
 import StoreProvider from "@/store/providers";
 import Sidebar from "@/components/sidebar/Sidebar";
+import Header from "@/components/header/Header";
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -26,7 +27,10 @@ export default function RootLayout({
       <body className="flex h-full min-h-screen">
         <StoreProvider>
           <Sidebar />
-          <main className="flex-1 overflow-auto">{children}</main>
+          <div className="flex flex-1 flex-col overflow-auto">
+            <Header />
+            <main className="flex-1">{children}</main>
+          </div>
         </StoreProvider>
       </body>
     </html>
