@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className="flex h-full min-h-screen">
         <StoreProvider>
           <Sidebar />
-          <div className="flex flex-1 flex-col overflow-auto">
+          <div className="flex flex-1 flex-col overflow-auto pt-16 xl:pt-0">
             <Header />
             <main className="flex-1">{children}</main>
           </div>
