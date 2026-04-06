@@ -1,5 +1,6 @@
 export type Role = 'viewer' | 'admin';
 export type TransactionType = 'income' | 'expense';
+export type InsightType = 'warning' | 'info' | 'success' | 'critical';
 
 export interface Category {
   id: string;
@@ -20,6 +21,16 @@ export interface Transaction {
   tags: string[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface InsightItem {
+  id: string;
+  title: string;
+  description: string;
+  type: InsightType; // 'warning' (Orange), 'info' (Blue), 'success' (Green)
+  trend?: 'up' | 'down' | 'stable';
+  date?: string; // Used for specific spending alerts (e.g., "2026-03-06")
+  actionable: boolean; // Determines if "View Recommendations" button is shown
 }
 
 export interface DashboardMeta {
@@ -48,10 +59,10 @@ export interface DashboardData {
   };
   categories: Category[];
   transactions: Transaction[];
-  insightsConfig: {
-    compareWindowMonths: number;
-    topCategoriesLimit: number;
-    largeExpenseThreshold: number;
+  insights: {
+    summary: string;
+    lastUpdated: string;
+    items: InsightItem[];
   };
 }
 
