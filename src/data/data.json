@@ -22,11 +22,31 @@
   },
   "categories": [
     { "id": "salary", "label": "Salary", "type": "income", "color": "#0ea5e9" },
-    { "id": "freelance", "label": "Freelance", "type": "income", "color": "#22c55e" },
+    {
+      "id": "freelance",
+      "label": "Freelance",
+      "type": "income",
+      "color": "#22c55e"
+    },
     { "id": "food", "label": "Food", "type": "expense", "color": "#f97316" },
-    { "id": "transport", "label": "Transport", "type": "expense", "color": "#a855f7" },
-    { "id": "housing", "label": "Housing", "type": "expense", "color": "#ef4444" },
-    { "id": "utilities", "label": "Utilities", "type": "expense", "color": "#eab308" },
+    {
+      "id": "transport",
+      "label": "Transport",
+      "type": "expense",
+      "color": "#a855f7"
+    },
+    {
+      "id": "housing",
+      "label": "Housing",
+      "type": "expense",
+      "color": "#ef4444"
+    },
+    {
+      "id": "utilities",
+      "label": "Utilities",
+      "type": "expense",
+      "color": "#eab308"
+    },
     { "id": "health", "label": "Health", "type": "expense", "color": "#14b8a6" }
   ],
   "transactions": [
@@ -188,39 +208,39 @@
     }
   ],
   "insights": {
-  "summary": "Automated Suggestions", 
-  "lastUpdated": "2h ago",
-  "items": [
-    {
-      "id": "ins-001",
-      "type": "warning",
-      "title": "Expenses rose 10% vs last month",
-      "description": "Most growth came from Transport and Food. Consider reviewing recurring subscriptions for potential savings.",
-      "trend": "up",
-      "actionable": true
-    },
-    {
-      "id": "ins-002",
-      "type": "info",
-      "title": "High single-day spending on 2026-03-06",
-      "description": "A $1,190 payment to 'City Homes' increased monthly expenses. You may want to move this to a fixed budget.",
-      "date": "2026-03-06",
-      "actionable": false
-    },
-    {
-      "id": "ins-003",
-      "type": "success",
-      "title": "Opportunity to increase emergency fund",
-      "description": "With current cash flow ($2,634 surplus), shifting $300/month could reach your target in 4 months.",
-      "actionable": true
-    },
-     {
-      "id": "ins-004",
-      "type": "success",
-      "title": "Opportunity to increase emergency fund",
-      "description": "With current cash flow ($2,634 surplus), shifting $300/month could reach your target in 4 months.",
-      "actionable": true
-    }
-  ]
-}
+    "summary": "Automated Suggestions",
+    "lastUpdated": "2h ago",
+    "items": [
+      {
+        "id": "ins-001",
+        "type": "warning",
+        "title": "Expenses rose 10% vs last month",
+        "description": "Most growth came from Transport and Food. Consider reviewing recurring subscriptions for potential savings.",
+        "trend": "up",
+        "actionable": true
+      },
+      {
+        "id": "ins-002",
+        "type": "info",
+        "title": "High single-day spending on 2026-03-06",
+        "description": "A $1,190 payment to 'City Homes' increased monthly expenses. You may want to move this to a fixed budget.",
+        "date": "2026-03-06",
+        "actionable": false
+      },
+      {
+        "id": "ins-003",
+        "type": "success",
+        "title": "Opportunity to increase emergency fund",
+        "description": "With current cash flow ($2,634 surplus), shifting $300/month could reach your target in 4 months.",
+        "actionable": true
+      },
+      {
+        "id": "ins-004",
+        "type": "success",
+        "title": "Freelance income up 15% this quarter",
+        "description": "Your 'Freelance' income category has grown 15% this quarter. Consider setting up a separate savings goal for this variable income.",
+        "actionable": true
+      }
+    ]
+  }
 }

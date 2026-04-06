@@ -1,8 +1,12 @@
-"use client";
+'use client';
 
-import { Search, Bell } from "lucide-react";
-
+import { Search, Bell } from 'lucide-react';
+import { setRole } from '@/store/slices/roleSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { selectRole } from '@/store/selectors';
 export default function Header() {
+  const dispatch = useAppDispatch();
+  const role = useAppSelector(selectRole);
   return (
     <header className="flex items-center justify-between px-8 py-6">
       {/* Left — Greeting */}
@@ -17,30 +21,6 @@ export default function Header() {
 
       {/* Right — Actions & Profile */}
       <div className="flex items-center gap-5">
-        {/* Search */}
-        <button
-          type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full text-[#1C1C28] transition-colors hover:bg-[#F0EDFF]"
-          aria-label="Search"
-        >
-          <Search size={20} />
-        </button>
-
-        {/* Notification bell */}
-        <button
-          type="button"
-          className="relative flex h-10 w-10 items-center justify-center rounded-full text-[#1C1C28] transition-colors hover:bg-[#F0EDFF]"
-          aria-label="Notifications"
-        >
-          <Bell size={20} />
-          <span className="absolute top-1 right-1 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[#7B61FF] text-[10px] font-semibold text-white">
-            2
-          </span>
-        </button>
-
-        {/* Divider */}
-        <div className="h-8 w-px bg-[#E5E5EF]" aria-hidden="true" />
-
         {/* User profile */}
         <div className="flex items-center gap-3">
           {/* Avatar */}
@@ -64,6 +44,41 @@ export default function Header() {
             <span className="truncate text-xs text-[#A2A2B5]">
               adaline@gmail.com
             </span>
+          </div>
+
+          {/* Divider */}
+          <div className="h-8 w-px bg-[#E5E5EF]" aria-hidden="true" />
+
+          {/* admin toggle */}
+          <div className="relative flex rounded-full border border-[#E5E5EF] bg-[#F4F2FF] p-1 text-sm">
+            {/* sliding indicator */}
+            <span
+              className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-[#7B61FF] shadow-sm transition-all duration-300 ease-in-out ${
+                role === 'admin' ? 'left-[calc(50%+2px)]' : 'left-1'
+              }`}
+            />
+            <button
+              type="button"
+              onClick={() => dispatch(setRole('viewer'))}
+              className={`relative z-10 rounded-full px-4 py-1.5 font-medium cursor-pointer transition-colors duration-300 ${
+                role === 'viewer'
+                  ? 'text-white'
+                  : 'text-[#A2A2B5] hover:text-[#1C1C28]'
+              }`}
+            >
+              Viewer
+            </button>
+            <button
+              type="button"
+              onClick={() => dispatch(setRole('admin'))}
+              className={`relative z-10 rounded-full px-4 py-1.5 font-medium cursor-pointer transition-colors duration-300 ${
+                role === 'admin'
+                  ? 'text-white'
+                  : 'text-[#A2A2B5] hover:text-[#1C1C28]'
+              }`}
+            >
+              Admin
+            </button>
           </div>
         </div>
       </div>
