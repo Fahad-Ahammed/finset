@@ -14,9 +14,9 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Sun,
   Menu,
   X,
+  Settings,
 } from 'lucide-react';
 
 const navItems = [
@@ -26,7 +26,7 @@ const navItems = [
   { label: 'Goals', icon: Target, href: '/goals' },
   { label: 'Budget', icon: PieChart, href: '/budget' },
   { label: 'Analytics', icon: BarChart3, href: '/analytics' },
-  { label: 'Settings', icon: Sun, href: '/settings' },
+  { label: 'Settings', icon: Settings, href: '/settings' },
 ];
 
 const bottomItems = [
